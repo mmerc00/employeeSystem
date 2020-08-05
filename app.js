@@ -4,6 +4,7 @@ const inquirer = require("inquirer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+//start function like greatbay?? async??
 
 function firstQuestion() {
   inquirer
@@ -37,7 +38,7 @@ function firstQuestion() {
          viewAllDepartments();
          break;
         case 'view all employees':
-          viewAllDepartments();
+          viewAllEmployees();
           break;
         case 'view all employees by role':
           viewAllEmployeesByRole();
@@ -71,13 +72,90 @@ function firstQuestion() {
           break;
    }});
 
+//view all roles
+function viewAllRoles() {
+   /*  let query = "Select employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee_m.first_name as manager_firstname, employee_m.last_name as manager_lastname \
+    from employee \
+    join role on employee.role_id = role.id \
+    join department on role.department_id = department.id \
+    Left join employee as employee_m on  employee.manager_id  = employee_m.id;"; */
+  connection.query("SELECT * FROM ROLES", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    //not sure if this is needed
+    connection.end();
+  });
+}
+function viewAllEmployees() {
+  /*  let query = "Select employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee_m.first_name as manager_firstname, employee_m.last_name as manager_lastname \
+   from employee \
+   join role on employee.role_id = role.id \
+   join department on role.department_id = department.id \
+   Left join employee as employee_m on  employee.manager_id  = employee_m.id;"; */
+ connection.query("SELECT * FROM EMPLOYEES", function (err, res) {
+   if (err) throw err;
+   console.table(res);
+   //not sure if this is needed
+   connection.end();
+ });
+}
+function viewAllDepartments() {
+  /*  let query = "Select employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee_m.first_name as manager_firstname, employee_m.last_name as manager_lastname \
+   from employee \
+   join role on employee.role_id = role.id \
+   join department on role.department_id = department.id \
+   Left join employee as employee_m on  employee.manager_id  = employee_m.id;"; */
+ connection.query("SELECT * FROM DEPARTMENTS", function (err, res) {
+   if (err) throw err;
+   console.table(res);
+   //not sure if this is needed
+   connection.end();
+ });
+}
+//view employee by role, deparatment and manager
+function viewAllEmployeesByRole() {
+  /*  let query = "Select employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee_m.first_name as manager_firstname, employee_m.last_name as manager_lastname \
+   from employee \
+   join role on employee.role_id = role.id \
+   join department on role.department_id = department.id \
+   Left join employee as employee_m on  employee.manager_id  = employee_m.id;"; */
+ connection.query("SELECT * FROM ROLES", function (err, res) {
+   if (err) throw err;
+   console.table(res);
+   //not sure if this is needed
+   connection.end();
+ });
+}
+function viewAllEmployeesByDepartment() {
+ /*  let query = "Select employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee_m.first_name as manager_firstname, employee_m.last_name as manager_lastname \
+  from employee \
+  join role on employee.role_id = role.id \
+  join department on role.department_id = department.id \
+  Left join employee as employee_m on  employee.manager_id  = employee_m.id;"; */
+connection.query("SELECT * FROM EMPLOYEES", function (err, res) {
+  if (err) throw err;
+  console.table(res);
+  //not sure if this is needed
+  connection.end();
+});
+}
+function viewAllEmployeesByManager() {
+ /*  let query = "Select employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee_m.first_name as manager_firstname, employee_m.last_name as manager_lastname \
+  from employee \
+  join role on employee.role_id = role.id \
+  join department on role.department_id = department.id \
+  Left join employee as employee_m on  employee.manager_id  = employee_m.id;"; */
+connection.query("SELECT * FROM DEPARTMENTS", function (err, res) {
+  if (err) throw err;
+  console.table(res);
+  //not sure if this is needed
+  connection.end();
+});
+}
 
-//query to join all three tables
-
-//replies 
-
- function (reply) {
-  if (reply.choice === "Add Employee") {
+//add replies 
+ function addEmployee (reply) {
+  if (reply.choice === "addEmployee") {
   inquirer
     .prompt([
     {
@@ -130,7 +208,62 @@ function firstQuestion() {
               );
  }}
 
-    function viewAllEmployees() {
+ function addRole (reply) {
+  if (reply.choice === "addRole") {
+  inquirer
+  .prompt ({[{
+    //Do I need to add id here to match workbench
+    type: "input",
+    message: "What is the role title you would like to add",
+    name: "title",
+    },
+    {
+    type: "input",
+    message: "What the role salary?",
+    name: "salary",
+    },
+    {
+    type: "input",
+    message: "what is the dapartment id?",
+    //in workbench its deparment_id under role table
+    name: "departmentId",
+    }
+    ])
+    
+    .then(function (addRoleReply) {
+    var newRole = new Role(
+      newRoleReply.id,
+      newRoleReply.title,
+      newRoleReply.salary,
+      newRoleReply.department_Id
+        );
+      //console.log(newEmployee);
+      // employeeId = employeeId++;
+      // addEmployee(newEmployee);
+      // newTeamMember();
+    })
+      function addRole(role) {
+      console.log("Adding a new role...\n");
+      var query = connection.query(
+      "INSERT INTO role SET ?",
+      {
+      title: role.title,
+      salary: role.salary,
+      dapartment_id: department.daparmenId,
+      },
+      function (err, res) {
+      if (err) throw err;
+      console.log(res.affectedRows + "role added \n");}
+              );
+ }}
+
+//update replies?
+
+//remove replies
+
+
+//this function views all the employees by pulling from database
+function viewAllEmployees() {
       let query = "Select employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee_m.first_name as manager_firstname, employee_m.last_name as manager_lastname \
       from employee \
       join role on employee.role_id = role.id \
