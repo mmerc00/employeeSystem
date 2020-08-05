@@ -1,8 +1,6 @@
-//dependecies
-//my sql
-const mysql = require("mysql");
-//inquirer
-const inquirer = require("inquirer");
+// connect to SQL and Inquirer
+var mysql = require("mysql");
+// put connection at the top
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -15,33 +13,27 @@ var connection = mysql.createConnection({
 
   // Your password
   password: "",
-  database: "employeeDB",
+  database: "employees_DB",
 });
 
-//connect prompt here:
-connection.connect(function(err){
-    if (err) throw err;
-    //start promt
-    addPrompt();
-})
+// Create questions for inquirer .prompts and .thens
+connection.connect(function (err) {
+  if (err) throw err;
+});
 
-//questions
-function addPrompt ()
-inquirer
-.prompt ({
-    type: list
-})
+/* function viewAllEmployees() {
+  let query = "Select employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee_m.first_name as manager_firstname, employee_m.last_name as manager_lastname \
+  from employee \
+  join role on employee.role_id = role.id \
+  join department on role.department_id = department.id \
+  Left join employee as employee_m on  employee.manager_id  = employee_m.id;";
+connection.query(query, function (err, res) {
+  if (err) throw err;
+  console.table(res);
+  //not sure if this is needed
+  connection.end();
+});
+} */
+// three depts
 
-
-// * Add departments, roles, employees (addprompt)
-
-//switch case 
-
-// * View departments, roles, employees
-
-
-
-
-// * Update employee roles
-
-//four deparatments - four functions 
+// helper Functions to use in the .then with inq Prompts as callbacks
