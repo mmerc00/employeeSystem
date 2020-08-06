@@ -104,13 +104,13 @@ function viewAllEmployees() {
   let qry = "SELECT ";
   qry += "employee.id as employee_id, ";
   qry += "employee.first_name as first.name, ";
-  qry += "employee.last as last.name, ";
+  qry += "employee.last_name as last.name, ";
   qry += "employee.role_id, ";
   qry += "employee.manager_id ";
   qry += "FROM employee ";
-  qry += "join role ON employee.role_id = role.id";
-  qry += "join manager ON employee.emplyee_id = employee.id";
-
+  qry += "join role ON employee.role_id = role.id ";
+  qry += "join manager ON employee.employee_id = employee.id";
+  console.log("VIEW ALL EMPLOYEES", qry);
   connection.query(qry, function (err, res) {
     if (err) throw err;
     console.table(res);
