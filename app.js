@@ -108,8 +108,8 @@ function viewAllEmployees() {
   qry += "employee.role_id, ";
   qry += "employee.manager_id ";
   qry += "FROM employee ";
-  qry += "join role ON employee.role_id = role.id ";
-  qry += "join manager ON employee.employee_id = employee.id";
+  // qry += "join role ON employee.role_id = role.id ";
+  // qry += "join manager ON employee.employee_id = employee.id";
   console.log("VIEW ALL EMPLOYEES", qry);
   connection.query(qry, function (err, res) {
     if (err) throw err;
