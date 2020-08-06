@@ -118,8 +118,8 @@ function viewAllEmployees() {
     start();
   });
 }
-
 function viewAllDepartments() {}
+
 //view employee by role, deparatment and manager
 function viewAllEmployeesByRole() {
   connection.query("SELECT * FROM ROLES", function (err, res) {
