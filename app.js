@@ -37,7 +37,7 @@ function start() {
         "add employee",
         "add roles",
         "add department",
-        "update employee roles",
+        "update employee",
       ],
     })
     .then((userAnswer) => {
@@ -227,7 +227,7 @@ function start() {
         );
       });
   }
-  function updateEmpRole() {
+  function updateEmployee() {
     // create employee and role array
     let employeeArray = [];
     let roleArray = [];
