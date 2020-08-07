@@ -231,20 +231,21 @@ function start() {
     // create employee and role array
     let employeeArray = [];
     let roleArray = [];
-    console.log(updatEmployeeArray);
     connection.query("SELECT id,title FROM roles ORDER BY title ASC", function (
       err,
       res
     ) {
       if (err) throw err;
       console.log(JSON.stringify(res));
+      console.log(res);
+
       // roleArray = res;
       //loop through res. and for each object in the res array create a new object {name: object.title, value, object.id} and add it to
       for (i = 0; i < res.length; i++) {
         roleArray.push(res[i].title);
       }
       connection.query(
-        "SELECT employee.id, concat(employee.first_name, employee.last_name) AS Employee FROM employee ORDER BY employee ASC",
+        "SELECT employee.id, concat(employee.first_name, employee.last_name) AS employee FROM employee ORDER BY employee ASC",
         function (err, res) {
           if (err) throw err;
           console.log(JSON.stringify(res));
