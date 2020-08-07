@@ -231,6 +231,7 @@ function start() {
     // create employee and role array
     let employeeArray = [];
     let roleArray = [];
+    console.log(updatEmployeeArray);
     connection.query("SELECT id,title FROM roles ORDER BY title ASC", function (
       err,
       res
