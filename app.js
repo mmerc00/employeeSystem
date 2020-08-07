@@ -226,56 +226,57 @@ function start() {
           }
         );
       });
-  }
-  function updateEmployee() {
-    // create employee and role array
+      
+   }
+   function updateEmployee(); {
+     // create employee and role array
     let employeeArray = [];
     let roleArray = [];
-    connection.query("SELECT id,title FROM roles ORDER BY title ASC", function (
-      err,
-      res
+   connection.query("SELECT id,title FROM roles ORDER BY title ASC", function (
+       err,
+       res
     ) {
-      if (err) throw err;
-      console.log(JSON.stringify(res));
-      console.log(res);
+       if (err) throw err;
+       console.log(JSON.stringify(res));
+       console.log(res);
 
-      // roleArray = res;
+       roleArray = res;
       //loop through res. and for each object in the res array create a new object {name: object.title, value, object.id} and add it to
-      for (i = 0; i < res.length; i++) {
-        roleArray.push(res[i].title);
-      }
-      connection.query(
-        "SELECT employee.id, concat(employee.first_name, employee.last_name) AS employee FROM employee ORDER BY employee ASC",
+     for (i = 0; i < res.length; i++) {
+       roleArray.push(res[i].title);
+     }
+       connection.query(
+       "SELECT employee.id, concat(employee.first_name, employee.last_name) AS employee FROM employee ORDER BY employee ASC",
         function (err, res) {
           if (err) throw err;
           console.log(JSON.stringify(res));
-        }
+         }
       );
       for (i = 0; i < res.length; i++) {
-        employeeArray.push(res[i].employee);
+         employeeArray.push(res[i].employee);
       }
-      inquirer
-        .prompt([
-          {
+           inquirer
+         .prompt([
+           {
             name: "role",
-            type: "list",
+             type: "list",
             message: "What is this new role?",
-            choices: roleArray,
-          },
-          {
+           choices: roleArray,
+           },
+           {
             name: "employee",
-            type: "list",
-            message: "What employee would you like to edit?",
-            choices: employeeArray,
+             type: "list",
+             message: "What employee would you like to edit?",
+             choices: employeeArray,
           },
-        ])
-        .then((answer) => {
-          connection.query(
+         ])
+           .then((answer) => {
+           connection.query(
             `UPDATE employee SET roles_id = ${answer.role} WHERE id = ${answer.employee}`
           );
         });
-    });
-  }
+     });
+   }
 }
 // UPDATE
 // function updateEmployee() {
