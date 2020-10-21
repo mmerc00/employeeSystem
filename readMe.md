@@ -1,8 +1,7 @@
 ![demo](es.gif)
-https://fabulous-note-taker.herokuapp.com/
 # Unit 12 Homework: Employee System
 
-In this generator a user is presented with questions regarding their work team. Upon user input, a employee is generated. The user has the options of adding more employees, their roles, ids and even departments!
+In this generator a user is presented with questions regarding their work team. Upon user input, a employee is generated. The user has the options of adding more employees, their roles, ids and even departments! Try iy at https://fabulous-note-taker.herokuapp.com/
 
 Prerequisites N/A
 
@@ -25,11 +24,7 @@ License N/A
 
 ## Acknowledgements
 
-- Ben Wright
-- Justin Pinero
-- Ben Benson (Tutor)
+
+- Ben Benson 
 - Cammryne Sullivan
-- James Rowe
 - Justin Ramirez
-- James Kim
-- Mike Haber
