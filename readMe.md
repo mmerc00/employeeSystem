@@ -7,14 +7,14 @@ Prerequisites N/A
 
 # Built With
 
---VS CODE
---Javascript
---Node Js
+-VS CODE
+-Javascript
+-Node Js
 -NPM Express
---My SQL
---Chrome
---HTML
---Github
+-My SQL
+-Chrome
+-HTML
+-Github
 
 ## Authors
 
